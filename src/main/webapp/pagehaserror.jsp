@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+	pageEncoding="ISO-8859-1"%>
+<%@page errorPage="error.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Name value from servlet : ${name}
-	<br /> Welcome ${user.userName} - password ${user.password}
-	<br />
+	<h2>Page has Error</h2>
+	<%
+      // Error divided by 0
+      int i = 1000 / 0;
+  %>
 </body>
 </html>
