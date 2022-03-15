@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fsoft.ctc.model.User;
 
@@ -41,9 +42,8 @@ public class LoginServlet extends HttpServlet {
 			req.setAttribute("name", "thuan");
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/welcome.jsp");
 			dispatcher.forward(req, resp);
-//			HttpSession session = req.getSession();
-//			String al = "am session variable";
-//			session.setAttribute("al", al);
+			HttpSession session = req.getSession();
+			session.setAttribute("user", user);
 //			resp.sendRedirect("welcome");
 		} else {
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/login.jsp");
