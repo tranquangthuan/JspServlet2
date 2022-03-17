@@ -34,8 +34,6 @@ public class LoginServlet extends HttpServlet {
 		System.out.println("Login doPost");
 		String userName = req.getParameter("userName");
 		String password = req.getParameter("password");
-		System.out.println(userName);
-		System.out.println(password);
 		if ("admin".equals(userName) && "admin".equals(password)) {
 			User user = new User(userName, password);
 			req.setAttribute("user", user);
