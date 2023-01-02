@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,11 +39,14 @@ public class LoginServlet extends HttpServlet {
 			User user = new User(userName, password);
 			req.setAttribute("user", user);
 			req.setAttribute("name", "thuan");
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/welcome.jsp");
-			dispatcher.forward(req, resp);
 			HttpSession session = req.getSession();
 			session.setAttribute("user", user);
+			Cookie userCookie = new Cookie("user", session.getId());
+			userCookie.setMaxAge(39);
+			resp.addCookie(userCookie);
 //			resp.sendRedirect("welcome");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/welcome.jsp");
+			dispatcher.forward(req, resp);
 		} else {
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/login.jsp");
 			dispatcher.forward(req, resp);

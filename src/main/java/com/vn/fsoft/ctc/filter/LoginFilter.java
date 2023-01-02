@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,13 +33,30 @@ public class LoginFilter implements Filter {
 			chain.doFilter(request, response);
 			return;
 		} else {
-			HttpSession session = req.getSession();
-			if (session != null && session.getAttribute("user") != null) {
+			HttpSession session = req.getSession(false);
+			if ((session != null && session.getAttribute("user") != null) || getUserCookies(req)) {
 				chain.doFilter(request, response);
 			} else {
 				resp.sendRedirect("login");
 			}
 		}
+	}
+
+	private boolean getUserCookies(HttpServletRequest req) {
+		Cookie[] cookies = null;
+		cookies = req.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName() == "user" || cookie.getValue() != "") {
+					System.out.println(cookie);
+					return true;
+				}
+			}
+		} else {
+			System.out.println("Not Cookie");
+			return false;
+		}
+		return false;
 	}
 
 	@Override
