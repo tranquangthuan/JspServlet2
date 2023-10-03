@@ -1,12 +1,21 @@
 package com.fsoft.ctc.model;
 
 public class Product {
+	private int id;
 	private String name;
 	private String color;
 	private int quantity;
 
 	public Product(String name, String color, int quantity) {
 		super();
+		this.name = name;
+		this.color = color;
+		this.quantity = quantity;
+	}
+
+	public Product(int id, String name, String color, int quantity) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.color = color;
 		this.quantity = quantity;
@@ -35,4 +44,18 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", color=" + color + ", quantity=" + quantity + "]";
+	}
+
 }

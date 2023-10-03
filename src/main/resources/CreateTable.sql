@@ -1,0 +1,6 @@
+CREATE TABLE student (
+  id INT IDENTITY(1, 1) PRIMARY KEY NOT NULL, 
+  name NVARCHAR (250) NOT NULL, 
+  age int NOT NULL, 
+  address NVARCHAR (250) NOT NULL
+);
