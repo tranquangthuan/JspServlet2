@@ -33,7 +33,7 @@ public class LoginFilter implements Filter {
 			return;
 		} else {
 			HttpSession session = req.getSession(false);
-			if ((session != null && session.getAttribute("user") != null) || getUserCookies(req)) {
+			if ((session != null && session.getAttribute("user") != null)) {
 				chain.doFilter(request, response);
 			} else {
 				resp.sendRedirect("login");

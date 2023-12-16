@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletResponse;
 
 @WebFilter(value = "/*", filterName = "Filter1")
 public class Filter1 implements Filter {
@@ -21,6 +22,8 @@ public class Filter1 implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		System.out.println("Filter1");
+		HttpServletResponse resp = (HttpServletResponse) response;
+		resp.addHeader("headerName", "headerValue");
 		chain.doFilter(request, response);
 	}
 
