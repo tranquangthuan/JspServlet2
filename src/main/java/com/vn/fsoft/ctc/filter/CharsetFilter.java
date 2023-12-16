@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter(value = "/*")
+@WebFilter(value = "/*", filterName = "CharsetFilter")
 public class CharsetFilter implements Filter {
 
 	private String encoding;
@@ -26,6 +26,7 @@ public class CharsetFilter implements Filter {
 			throws IOException, ServletException {
 		// Respect the client-specified character encoding
 		// (see HTTP specification section 3.4.1)
+		System.out.println("CharsetFilter Filter");
 		if (null == request.getCharacterEncoding()) {
 			request.setCharacterEncoding(encoding);
 		}
